@@ -5,7 +5,7 @@ from sklearn.cluster import AgglomerativeClustering
 from scipy.cluster.hierarchy import linkage, dendrogram
 from sklearn import preprocessing
 
-datafile = 'subj_0001_FC.mat'
+datafile = './dataset/exp3subj_0001_FC.mat'
 orin_data = scio.loadmat(datafile)['corrmatrix']
 
 plt.imshow(orin_data,cmap=plt.cm.hot)

@@ -4,24 +4,23 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2 as cv
 import scipy.ndimage.interpolation as inter
+import sys
 
-
-path_mask = "/home/yjj2022/bci_exp/bci_exp1/mask"
+path_mask = os.path.abspath('..')
 data = []
 mask = []
-
-data_name = ['/home/yjj2022/bci_exp/bci_exp1/mask/re_DMN.nii',
-        '/home/yjj2022/bci_exp/bci_exp1/mask/re_LCCN.nii',
-        '/home/yjj2022/bci_exp/bci_exp1/mask/re_RCCN.nii',
-        '/home/yjj2022/bci_exp/bci_exp1/mask/re_SN.nii']
+data_name = ['../dataset/exp1/re_DMN.nii',
+        '../dataset/exp1/re_LCCN.nii',
+        '../dataset/exp1/re_RCCN.nii',
+        '../dataset/exp1/re_SN.nii']
 
 
 mask_name = [
-    '/home/yjj2022/bci_exp/bci_exp1/mask/LCCN_mask.nii',
-    '/home/yjj2022/bci_exp/bci_exp1/mask/RCCN_mask.nii'
+    '../dataset/exp1/LCCN_mask.nii',
+    '../dataset/exp1/RCCN_mask.nii'
 ]
 
-u = '/home/yjj2022/bci_exp/bci_exp1/data/4DfMRI.nii'
+u = '../dataset/exp1/4DfMRI.nii'
 
 
 
@@ -38,7 +37,7 @@ fig,axes = plt.subplots(3,2)
 for i in range(3):
     axes[i,0].imshow(np.sum(data[1],axis=i))
     axes[i,1].imshow(np.sum(mask[0],axis=i))
-plt.savefig('/home/yjj2022/bci_exp/bci_exp1/0.jpg')
+plt.savefig('../result/exp1/0.jpg')
 plt.clf()
 
 """   2时间序列展示   """
@@ -49,7 +48,7 @@ for i in range(4):
 
 fig,axes = plt.subplots(1,1)
 axes.plot(a[0],color='red')
-plt.savefig('/home/yjj2022/bci_exp/bci_exp1/1.jpg')
+plt.savefig('../result/exp1/1.jpg')
 plt.clf()
 
 
@@ -59,13 +58,12 @@ r = r/np.max(r)
 fig,axes = plt.subplots(1,1)
 plt.imshow(r,cmap=plt.cm.hot)
 plt.colorbar()
-plt.savefig('/home/yjj2022/bci_exp/bci_exp1/2.jpg')
+plt.savefig('../result/exp1/2.jpg')
 plt.clf()
 
 
-
 """    4 AAL模板多脑区计算  """
-aal_path = '/home/yjj2022/bci_exp/bci_exp1/AAL_template/aal.nii'
+aal_path = '../dataset/exp1/aal.nii'
 aal = nb.load(aal_path).get_fdata()  #116类
 tem = np.zeros((116,170),dtype=np.float32)
 aal = inter.zoom(aal,[61/aal.shape[0],73/aal.shape[1],61/aal.shape[2]],order = 3)
@@ -81,5 +79,5 @@ r_new = np.corrcoef(tem)
 r_new = r_new / np.max(r_new)
 plt.imshow(r_new,cmap=plt.cm.hot)
 plt.colorbar()
-plt.savefig('/home/yjj2022/bci_exp/bci_exp1/3.jpg')
+plt.savefig('../result/exp1/3.jpg')
 
