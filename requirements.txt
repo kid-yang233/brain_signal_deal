@@ -1,0 +1,6 @@
+cv2
+matplotlib
+numpy
+nibabel
+scikit-learn
+psychopy
