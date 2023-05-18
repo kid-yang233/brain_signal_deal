@@ -9,7 +9,7 @@ from scipy.signal import butter,lfilter,hann
 from sklearn import svm
 from sklearn.preprocessing import normalize
 
-datafile = "5\data.mat"
+datafile = "dataset\exp5\data.mat"
 
 data = scio.loadmat(datafile)
 train_label = data['train_l']
