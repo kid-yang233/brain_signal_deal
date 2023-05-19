@@ -26,7 +26,7 @@ def filter1(signal_set):#陷波滤波器
         b,a = signal.iirnotch(50,Q,fs)
         fitered_signal = filtfilt(b,a,i,axis=0)
         b,a = butter(4,[0.5,49.5],btype='bandpass',fs=fs)
-        fitered_signal = filtfilt(b,a,i,axis=0)
+        fitered_signal = filtfilt(b,a,fitered_signal,axis=0)
         new_set.append(fitered_signal)
 
     return new_set
